@@ -22,37 +22,6 @@ def load_sst(text_field, label_field, batch_size):
 def sigmoid(x):
     return (1 / (1 + np.exp(-x)))
 
-def get_accuracy(truth, pred):
-    assert len(truth) == len(pred)
-    right = 0
-    for i in range(len(truth)):
-        if truth[i] == pred[i]:
-            right += 1.0
-    return right / len(truth)
-
-def evaluate(model, data, loss_function, name):
-    model.eval()
-    avg_loss = 0.0
-    truth_res = []
-    pred_res = []
-    for batch in data:
-        sent, label = batch.text, batch.label
-        label.data.sub_(1)
-        truth_res += list(label.data)
-        model.batch_size = len(label.data)
-        model.hidden = model.init_hidden()
-        sent = sent.cuda()
-        pred, _, _ = model(sent)
-        pred = F.log_softmax(pred)
-        pred = pred.cpu()
-        pred_label = pred.data.max(1)[1].numpy()
-        pred_res += [x for x in pred_label]
-        loss = loss_function(pred, label)
-        avg_loss += loss.data[0]
-    avg_loss /= len(data)
-    acc = get_accuracy(truth_res, pred_res)
-    print(name + ': loss %.2f acc %.1f' % (avg_loss, acc*100))
-    return acc
 
 def attribution(model, text):
     # data for word-to-vec
@@ -150,10 +119,7 @@ def attribution(model, text):
 text = "the fight scenes are fun but it grows tedious"
 #text = "the story may be new, but it does not serve lots of laughs"
 best_model = torch.load('models/bigru/best_model.pkl')
-text_field = data.Field(lower=True)  # it is an object
-label_field = data.Field(sequential=False)   # it is also an object
-train_iter, dev_iter, test_iter = load_sst(text_field, label_field, 5)
-test_acc = evaluate(best_model, test_iter, nn.NLLLoss(), 'Final Test')
+
 word_tokenize_list, score_dict = attribution(best_model, text) 
 
 

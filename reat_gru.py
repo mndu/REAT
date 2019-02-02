@@ -95,7 +95,6 @@ def attribution(model, text):
 #text = "the fight scenes are fun but it grows tedious"
 text = "the story may be new, but it does not serve lots of laughs"
 best_model = torch.load('models/gru/best_model.pkl')
-
 word_tokenize_list, score_dict = attribution(best_model, text) 
 
 
