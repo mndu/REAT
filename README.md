@@ -17,7 +17,7 @@ cd REAT
 gunzip GoogleNews-vectors-negative300.bin.gz
 ```
 
-* Train RNN models, we consider the following three models, GRU, LSTM and Bidirectional GRU:
+* Train RNN models, we consider the following three models, GRU, LSTM and Bidirectional GRU.  As the focus of this paper is to provide post-hoc attribution for the predictions of RNNs, rather than increase their predictive accuracy, thus we use [standard practices](https://github.com/clairett/pytorch-sentiment-classification) to train our models.
 ```
 python train_batch.py --m gru
 python train_batch.py --m lstm
