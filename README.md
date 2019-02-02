@@ -17,14 +17,14 @@ cd REAT
 gunzip GoogleNews-vectors-negative300.bin.gz
 ```
 
-* Train DNN models, from the following three:
+* Train RNN models, we consider the following three models, GRU, LSTM and Bidirectional GRU:
 ```
 python train_batch.py --m gru
 python train_batch.py --m lstm
 python train_batch.py --m bigru
 ```
 
-* Provide attribution for an input text:
+* Provide attribution for an input text for three kinds of RNN models, GRU, LSTM and Bidirectional GRU:
 ```
 python reat_gru
 python reat_lstm
