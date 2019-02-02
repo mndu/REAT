@@ -12,15 +12,13 @@ git clone https://github.com/mndu/REAT.git
 cd REAT
 ```
 
-* Download the pretrained `word2vec` pre-trained using Google News corpus from [GoogleNews-vectors-negative300.bin.gz](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing)
-
-Unzip the .gz file:
+* Download the pretrained `word2vec` pre-trained using Google News corpus from [GoogleNews-vectors-negative300.bin.gz](https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit?usp=sharing). Unzip the .gz file:
 ```python
 gunzip GoogleNews-vectors-negative300.bin.gz
 ```
 
 * Train DNN models, from the following three:
-```python
+```
 python train_batch.py --m gru
 python train_batch.py --m lstm
 python train_batch.py --m bigru
