@@ -6,7 +6,7 @@ import os
 from tqdm import tqdm
 from lstm import LSTMSentiment
 from gru import GRUSentiment
-from bigru import GRUSentiment
+from bigru import BiGRUSentiment
 from torchtext import data
 import numpy as np
 import argparse
@@ -154,7 +154,7 @@ if args.model == 'gru':
 
 if args.model == 'bigru':
     print('model is bigru')
-    model = GRUSentiment(embedding_dim=EMBEDDING_DIM, hidden_dim=HIDDEN_DIM, vocab_size=len(text_field.vocab), label_size=len(label_field.vocab)-1,\
+    model = BiGRUSentiment(embedding_dim=EMBEDDING_DIM, hidden_dim=HIDDEN_DIM, vocab_size=len(text_field.vocab), label_size=len(label_field.vocab)-1,\
                           use_gpu=USE_GPU, batch_size=BATCH_SIZE)
 
 if USE_GPU:
