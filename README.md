@@ -19,18 +19,18 @@ gunzip GoogleNews-vectors-negative300.bin.gz
 
 * Train RNN models, we consider the following three models, GRU, LSTM and Bidirectional GRU.  As the focus of this paper is to provide post-hoc attribution for the predictions of RNNs, rather than increase their predictive accuracy, thus we use [standard practices](https://github.com/clairett/pytorch-sentiment-classification) to train our models.
 ```
-python train_batch.py --m gru --data abstract
+python train_batch.py --m gru
+python train_batch.py --m lstm
+python train_batch.py --m bigru
 ```
 
 * Provide attribution for an input text for three kinds of RNN models, GRU, LSTM and Bidirectional GRU:
 ```
-python reat_gru.py --data abstract
+python reat_gru
+python reat_lstm
+python reat_bigru
 ```
 
-Generate HTML
-```
-python html_test_py.py --data abstract
-```
 
 ## System requirement:
 Python 2.7, torch 0.3, torchtext 0.2.3, nltk, and tqdm
